@@ -1,4 +1,3 @@
-package tw.com.fet.ecs.downloadInstaller;
 
 import android.app.DownloadManager;
 import android.content.Context;
@@ -21,8 +20,8 @@ public class DownloadInstaller {
     private static final String TAG = DownloadInstaller.class.getSimpleName();
 
     public enum Type {
-        VOIP,
-        EMMA,
+        one,
+        two,
         ;
 
         public String getEnqueueIdPreferenceName() {
