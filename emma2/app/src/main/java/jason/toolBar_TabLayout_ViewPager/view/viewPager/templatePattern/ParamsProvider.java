@@ -20,18 +20,22 @@ public abstract class ParamsProvider implements IToolBarParamsProvide, ITabLayou
         return mContext;
     }
 
+    @Override
     public int getTitleTypeface() {
         return Typeface.BOLD;
     }
 
+    @Override
     public int getTitleTextSize() {
         return 20;
     }
 
+    @Override
     public int getTitleTextColor() {
         return Color.BLACK;
     }
 
+    @Override
     public int getBackgroundColor() {
         return Color.BLUE;
     }
