@@ -1,4 +1,4 @@
-package jason.toolBar_TabLayout_ViewPager.view.viewPager.sample;
+package jason.toolBar_TabLayout_ViewPager.view.viewPager.emma2.provider;
 
 import android.content.Context;
 import android.support.v7.widget.Toolbar;
@@ -7,15 +7,17 @@ import android.view.View;
 import android.widget.Toast;
 
 import jason.toolBar_TabLayout_ViewPager.R;
-import jason.toolBar_TabLayout_ViewPager.view.viewPager.templatePattern.ParamsProvider;
+import jason.toolBar_TabLayout_ViewPager.view.viewPager.base.fragment.BaseFragment;
+import jason.toolBar_TabLayout_ViewPager.view.viewPager.base.paramsProvide.ParamsWorker;
+import jason.toolBar_TabLayout_ViewPager.view.viewPager.emma2.fragment.SocialFragment;
 
 /**
  * Created by cs on 15/11/28.
  */
-public class SocialParamsProvider extends ParamsProvider {
+public class SocialParamsWorker extends ParamsWorker {
 
 
-    public SocialParamsProvider(Context conext) {
+    public SocialParamsWorker(Context conext) {
         super(conext);
     }
 
@@ -69,6 +71,11 @@ public class SocialParamsProvider extends ParamsProvider {
     @Override
     public View getOnSelectView() {
         return null;
+    }
+
+    @Override
+    public BaseFragment getNewFragment() {
+        return new SocialFragment();
     }
 
     @Override

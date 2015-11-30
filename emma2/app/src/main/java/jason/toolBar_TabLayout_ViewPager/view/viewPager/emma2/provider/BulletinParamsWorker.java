@@ -1,24 +1,29 @@
-package jason.toolBar_TabLayout_ViewPager.view.viewPager.sample;
+package jason.toolBar_TabLayout_ViewPager.view.viewPager.emma2.provider;
 
 import android.content.Context;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import jason.toolBar_TabLayout_ViewPager.R;
-import jason.toolBar_TabLayout_ViewPager.view.viewPager.templatePattern.ParamsProvider;
+import jason.toolBar_TabLayout_ViewPager.view.viewPager.base.fragment.BaseFragment;
+import jason.toolBar_TabLayout_ViewPager.view.viewPager.base.paramsProvide.ParamsWorker;
+import jason.toolBar_TabLayout_ViewPager.view.viewPager.emma2.fragment.BulletinFragment;
 
 /**
  * Created by cs on 15/11/28.
  */
-public class MoreParamsProvider extends ParamsProvider {
+public class BulletinParamsWorker extends ParamsWorker {
 
-    public MoreParamsProvider(Context conext) {
+
+    public BulletinParamsWorker(Context conext) {
         super(conext);
     }
 
     @Override
     public String getOnSelectTittle() {
-        return "More";
+        return "Bulletin";
     }
 
     @Override
@@ -28,7 +33,13 @@ public class MoreParamsProvider extends ParamsProvider {
 
     @Override
     public Toolbar.OnMenuItemClickListener  getMenuOnMenuItemClickListener() {
-        return null;
+        return new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                Toast.makeText(getContext(), getTAGName(), Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        };
     }
 
     @Override
@@ -38,7 +49,7 @@ public class MoreParamsProvider extends ParamsProvider {
 
     @Override
     public int getOnSelectMenuResId() {
-        return 0;
+        return R.menu.menu_bulletin;
     }
 
     @Override
@@ -54,6 +65,11 @@ public class MoreParamsProvider extends ParamsProvider {
     @Override
     public View getOnSelectView() {
         return null;
+    }
+
+    @Override
+    public BaseFragment getNewFragment() {
+        return new BulletinFragment();
     }
 
     @Override

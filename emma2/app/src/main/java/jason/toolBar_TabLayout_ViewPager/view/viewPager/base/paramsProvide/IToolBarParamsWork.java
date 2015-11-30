@@ -1,4 +1,4 @@
-package jason.toolBar_TabLayout_ViewPager.view.viewPager.templatePattern;
+package jason.toolBar_TabLayout_ViewPager.view.viewPager.base.paramsProvide;
 
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -8,7 +8,7 @@ import android.view.View;
  */
 
 
-public interface IToolBarParamsProvide extends IProvide {
+public interface IToolBarParamsWork extends IBaseParamsWork {
 
     //For Toolbar
     String getOnSelectTittle();

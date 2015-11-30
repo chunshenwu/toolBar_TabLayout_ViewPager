@@ -1,30 +1,33 @@
-package jason.toolBar_TabLayout_ViewPager.view.viewPager.templatePattern;
+package jason.toolBar_TabLayout_ViewPager.view.viewPager.base.builder;
 
 import android.content.Context;
 import android.graphics.Color;
 import android.support.design.widget.TabLayout;
-import android.support.v4.view.PagerAdapter;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.util.TypedValue;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.HashMap;
 
 import jason.toolBar_TabLayout_ViewPager.R;
-import jason.toolBar_TabLayout_ViewPager.view.viewPager.sample.MainActivity;
+import jason.toolBar_TabLayout_ViewPager.view.viewPager.base.paramsProvide.ITabLayoutParamsWork;
+import jason.toolBar_TabLayout_ViewPager.view.viewPager.base.paramsProvide.IToolBarParamsWork;
+import jason.toolBar_TabLayout_ViewPager.view.viewPager.base.paramsProvide.ParamsWorker;
+import jason.toolBar_TabLayout_ViewPager.view.viewPager.emma2.MainActivity;
 
 public class ToolBarTablayoutViewPager {
 
 //private String TAG = ToolBarTablayoutViewPager.class.getName();
 
-    private final HashMap<String, ParamsProvider> mHashMap;
+    private final HashMap<String, ParamsWorker> mHashMap;
     private final ToolBarOperator mToolBarOperator;
     private final TabLayoutOperator  mTabLayoutOperator;
     private final ViewPagerOperator mViewPagerOperator;
@@ -36,8 +39,8 @@ public class ToolBarTablayoutViewPager {
             mToolBarTablayoutViewPager = new ToolBarTablayoutViewPager(appCompatActivity, toolbar, tabLayout, viewPager);
         }
 
-        public Builder addProviderWithTab(final ParamsProvider paramsProvider) {
-            mToolBarTablayoutViewPager.addProviderWithTab(paramsProvider);
+        public Builder addProviderWithTab(final ParamsWorker paramsWorker) {
+            mToolBarTablayoutViewPager.addProviderWithTab(paramsWorker);
             return this;
         }
 
@@ -48,21 +51,23 @@ public class ToolBarTablayoutViewPager {
 
     ToolBarTablayoutViewPager(AppCompatActivity appCompatActivity, Toolbar toolbar, TabLayout tabLayout, ViewPager viewPager) {
         mHashMap = new HashMap<>();
+
         mToolBarOperator = new ToolBarOperator(appCompatActivity, toolbar);
         mTabLayoutOperator = new TabLayoutOperator(mHashMap, toolbar, tabLayout, viewPager);
-        mViewPagerOperator = new ViewPagerOperator(mHashMap, tabLayout, viewPager);
+        mViewPagerOperator = new ViewPagerOperator(mHashMap, tabLayout, viewPager, appCompatActivity.getSupportFragmentManager());
     }
 
-    public void addProviderWithTab(final ParamsProvider paramsProvider) {
-        mTabLayoutOperator.addProviderWithTab(paramsProvider);
+    public void addProviderWithTab(final ParamsWorker paramsWorker) {
+        mTabLayoutOperator.addProviderWithTab(paramsWorker);
     }
 
     public void init() {
         mToolBarOperator.init();
         mTabLayoutOperator.init();
         mViewPagerOperator.init();
+
         //FIXME: workaround
-        mViewPagerOperator.refresh();
+//        mViewPagerOperator.refresh();
     }
 }
 
@@ -82,21 +87,21 @@ class ToolBarOperator {
 
 class TabLayoutOperator {
 
-    private final HashMap<String, ParamsProvider> mHashMap;
+    private final HashMap<String, ParamsWorker> mHashMap;
     private final Toolbar mToolbar;
     private final TabLayout mTabLayout;
     private final ViewPager mViewPager;
 
-    public TabLayoutOperator(final HashMap<String, ParamsProvider> hashMap, final Toolbar toolbar, final TabLayout tabLayout, final ViewPager viewPager){
+    public TabLayoutOperator(final HashMap<String, ParamsWorker> hashMap, final Toolbar toolbar, final TabLayout tabLayout, final ViewPager viewPager){
         mHashMap = hashMap;
         mToolbar = toolbar;
         mTabLayout = tabLayout;
         mViewPager = viewPager;
     }
 
-    public void addProviderWithTab(final ParamsProvider ParamsProvider) {
+    public void addProviderWithTab(final ParamsWorker ParamsWorker) {
         final String alias = String.valueOf(mHashMap.size());
-        mHashMap.put(alias, ParamsProvider);
+        mHashMap.put(alias, ParamsWorker);
 
         final TabLayout.Tab tab = mTabLayout.newTab();
         tab.setTag(alias);
@@ -123,14 +128,14 @@ class TabLayoutOperator {
 
         private final Toolbar mToolbar;
         private final ViewPager mViewPager;
-        private final HashMap<String, ParamsProvider> mHashMap;
-        OnTabSelectedListenerImpl(Toolbar toolbar, final ViewPager viewPager, HashMap<String, ParamsProvider> hashMap) {
+        private final HashMap<String, ParamsWorker> mHashMap;
+        OnTabSelectedListenerImpl(Toolbar toolbar, final ViewPager viewPager, HashMap<String, ParamsWorker> hashMap) {
             mToolbar = toolbar;
             mViewPager = viewPager;
             mHashMap = hashMap;
         }
 
-        private void setOnSelectToolBarTitle(IToolBarParamsProvide provide){
+        private void setOnSelectToolBarTitle(IToolBarParamsWork provide){
             mToolbar.setTitle("");
             TextView toolbarTitle = (TextView) mToolbar.findViewById(R.id.toolbar_title);
             Log.i(provide.getTAGName(), "setOnSelectToolBarTitle " + toolbarTitle);
@@ -142,7 +147,7 @@ class TabLayoutOperator {
             toolbarTitle.setText(provide.getOnSelectTittle());
         }
 
-        private void setOnSelectToolBarNavigationIconIfNeed(IToolBarParamsProvide provide){
+        private void setOnSelectToolBarNavigationIconIfNeed(IToolBarParamsWork provide){
             final int iconId = provide.getOnSelectNavigationIconResId();
             if (iconId != 0) {
                 mToolbar.setNavigationIcon(iconId);
@@ -151,7 +156,7 @@ class TabLayoutOperator {
             }
         }
 
-        private void setOnSelectToolBarNavigationIconListenerIfNeed(IToolBarParamsProvide provide){
+        private void setOnSelectToolBarNavigationIconListenerIfNeed(IToolBarParamsWork provide){
             final View.OnClickListener listener = provide.getNavigationIconOnClickListener();
             if (listener != null) {
                 mToolbar.setNavigationOnClickListener(listener);
@@ -160,7 +165,7 @@ class TabLayoutOperator {
             }
         }
 
-        private void setOnSelectToolBarMenuIfNeed(IToolBarParamsProvide provide){
+        private void setOnSelectToolBarMenuIfNeed(IToolBarParamsWork provide){
             final int menuId = provide.getOnSelectMenuResId();
             if (menuId != 0) {
                 mToolbar.inflateMenu(menuId);
@@ -169,7 +174,7 @@ class TabLayoutOperator {
             }
         }
 
-        private void setOnSelectToolBarMenuOnMenuItemClickListenerIfNeed(IToolBarParamsProvide provide){
+        private void setOnSelectToolBarMenuOnMenuItemClickListenerIfNeed(IToolBarParamsWork provide){
             final Toolbar.OnMenuItemClickListener listener = provide.getMenuOnMenuItemClickListener();
             if (listener != null) {
                 mToolbar.setOnMenuItemClickListener(listener);
@@ -178,7 +183,7 @@ class TabLayoutOperator {
             }
         }
 
-        private void setOnSelectTabLayoutIconIfNeed(TabLayout.Tab tab, ITabLayoutParamsProvide provide){
+        private void setOnSelectTabLayoutIconIfNeed(TabLayout.Tab tab, ITabLayoutParamsWork provide){
             final int iconId = provide.getOnSelectResId();
             if (iconId != 0) {
                 CustomizeTabUtil.setIcon(tab, iconId);
@@ -208,7 +213,7 @@ class TabLayoutOperator {
             mToolbar.setNavigationOnClickListener(null);
         }
 
-        private void setOnUnSelectTabLayoutIconIfNeed(TabLayout.Tab tab, ITabLayoutParamsProvide provide){
+        private void setOnUnSelectTabLayoutIconIfNeed(TabLayout.Tab tab, ITabLayoutParamsWork provide){
             final int iconId = provide.getOnUnSelectResId();
             if (iconId != 0) {
     //            tab.setIcon(iconId);
@@ -221,33 +226,39 @@ class TabLayoutOperator {
 
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
-        Log.i(TAG, "onTabSelected = " + tab.getPosition());
-        ParamsProvider paramsProvider = mHashMap.get(tab.getTag());
+        ParamsWorker paramsWorker = mHashMap.get(tab.getTag());
+        Log.i(TAG, "onTabSelected = " + tab.getPosition() + " " + paramsWorker.getTAGName());
+
         //ToolBar
-        setOnSelectToolBarTitle(paramsProvider);
+        setOnSelectToolBarTitle(paramsWorker);
 
-        setOnSelectToolBarNavigationIconIfNeed(paramsProvider);
-        setOnSelectToolBarNavigationIconListenerIfNeed(paramsProvider);
+        setOnSelectToolBarNavigationIconIfNeed(paramsWorker);
+        setOnSelectToolBarNavigationIconListenerIfNeed(paramsWorker);
 
-        setOnSelectToolBarMenuIfNeed(paramsProvider);
-        setOnSelectToolBarMenuOnMenuItemClickListenerIfNeed(paramsProvider);
+        setOnSelectToolBarMenuIfNeed(paramsWorker);
+        setOnSelectToolBarMenuOnMenuItemClickListenerIfNeed(paramsWorker);
         //TabLayout
-        setOnSelectTabLayoutIconIfNeed(tab, paramsProvider);
+        setOnSelectTabLayoutIconIfNeed(tab, paramsWorker);
         //ViewPager
         mViewPager.setCurrentItem(tab.getPosition());
+
+        //Fragment;
+        paramsWorker.getFragment().onTabChangedResume();
     }
 
     @Override
     public void onTabUnselected(TabLayout.Tab tab) {
-        ParamsProvider paramsProvider = mHashMap.get(tab.getTag());
+        ParamsWorker paramsWorker = mHashMap.get(tab.getTag());
         //ToolBar
         setOnUnSelectToolBarTitle();
         setOnUnSelectMenuIfNeed();
         setOnUnSelectNavigationIcon();
         //Tab
-        setOnUnSelectTabLayoutIconIfNeed(tab, paramsProvider);
+        setOnUnSelectTabLayoutIconIfNeed(tab, paramsWorker);
         //ViewPager
 
+        //Fragment;
+        paramsWorker.getFragment().onTabChangedPause();
     }
 
     @Override
@@ -280,17 +291,19 @@ class TabLayoutOperator {
 
 class ViewPagerOperator {
 
-    private final HashMap<String, ParamsProvider> mHashMap;
+    private final HashMap<String, ParamsWorker> mHashMap;
     private final TabLayout mTabLayout;
     private final ViewPager mViewPager;
-    public ViewPagerOperator(final HashMap<String, ParamsProvider> hashMap , final TabLayout tabLayout, final ViewPager viewPager){
+    private final FragmentManager mFragmentManager;
+    public ViewPagerOperator(final HashMap<String, ParamsWorker> hashMap, final TabLayout tabLayout, final ViewPager viewPager, final FragmentManager fragmentManager){
         mHashMap = hashMap;
         mTabLayout = tabLayout;
         mViewPager = viewPager;
+        mFragmentManager = fragmentManager;
     }
 
     public void init() {
-        mViewPager.setAdapter(new PagerAdapter(mViewPager.getContext(), mHashMap));
+        mViewPager.setAdapter(new ViewPagerAdapter(mHashMap, mFragmentManager));
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));
     }
 
@@ -301,54 +314,29 @@ class ViewPagerOperator {
         }
     }
 
-    class PagerAdapter extends android.support.v4.view.PagerAdapter {
+    class ViewPagerAdapter extends FragmentStatePagerAdapter {
+        private final String TAG = ViewPagerAdapter.class.getSimpleName();
 
-        private String TAG = PagerAdapter.class.getName();
-
-        private final Context mContext;
-        private final HashMap<String, ParamsProvider> mHashMap;
-        PagerAdapter(final Context context, HashMap<String, ParamsProvider> hashMap) {
-            mContext = context;
+        private HashMap<String, ParamsWorker> mHashMap;
+        public ViewPagerAdapter(final HashMap<String, ParamsWorker> hashMap, FragmentManager fm) {
+            super(fm);
             mHashMap = hashMap;
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            ParamsWorker paramsWorker;
+            if (position > mHashMap.size()) {
+                Log.e(TAG, "getItem: Error");
+                return null;
+            }
+            paramsWorker = mHashMap.get(String.valueOf(position));
+            return paramsWorker.getFragment();
         }
 
         @Override
         public int getCount() {
             return mHashMap.size();
-        }
-
-        @Override
-        public boolean isViewFromObject(View view, Object o) {
-            return o == view;
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return "Item " + (position + 1);
-        }
-
-
-        @Override
-        public Object instantiateItem(ViewGroup container, int position) {
-            LayoutInflater inflater = (LayoutInflater) mContext.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
-            ParamsProvider ParamsProvider = mHashMap.get(String.valueOf(position));
-
-            //TODO:
-
-            Log.i(TAG, "postion" + position);
-
-//        ToolBarTablayoutViewPagerImpl toolBarTablayoutViewPagerImpl = mHashMap.get(tab.getTag());
-
-            View view = inflater.inflate(R.layout.pager_item, container, false);
-            container.addView(view);
-            TextView title = (TextView) view.findViewById(R.id.item_title);
-            title.setText(String.valueOf(position + 1));
-
-            return view;
-        }
-        @Override
-        public void destroyItem(ViewGroup container, int position, Object object) {
-            container.removeView((View) object);
         }
     }
 }

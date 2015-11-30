@@ -1,27 +1,26 @@
-package jason.toolBar_TabLayout_ViewPager.view.viewPager.sample;
+package jason.toolBar_TabLayout_ViewPager.view.viewPager.emma2.provider;
 
 import android.content.Context;
 import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import jason.toolBar_TabLayout_ViewPager.R;
-import jason.toolBar_TabLayout_ViewPager.view.viewPager.templatePattern.ParamsProvider;
+import jason.toolBar_TabLayout_ViewPager.view.viewPager.base.fragment.BaseFragment;
+import jason.toolBar_TabLayout_ViewPager.view.viewPager.base.paramsProvide.ParamsWorker;
+import jason.toolBar_TabLayout_ViewPager.view.viewPager.emma2.fragment.MoreFragment;
 
 /**
  * Created by cs on 15/11/28.
  */
-public class BulletinParamsProvider extends ParamsProvider {
+public class MoreParamsWorker extends ParamsWorker {
 
-
-    public BulletinParamsProvider(Context conext) {
+    public MoreParamsWorker(Context conext) {
         super(conext);
     }
 
     @Override
     public String getOnSelectTittle() {
-        return "Bulletin";
+        return "More";
     }
 
     @Override
@@ -31,13 +30,7 @@ public class BulletinParamsProvider extends ParamsProvider {
 
     @Override
     public Toolbar.OnMenuItemClickListener  getMenuOnMenuItemClickListener() {
-        return new Toolbar.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                Toast.makeText(getContext(), getTAGName(), Toast.LENGTH_SHORT).show();
-                return false;
-            }
-        };
+        return null;
     }
 
     @Override
@@ -47,7 +40,7 @@ public class BulletinParamsProvider extends ParamsProvider {
 
     @Override
     public int getOnSelectMenuResId() {
-        return R.menu.menu_bulletin;
+        return 0;
     }
 
     @Override
@@ -63,6 +56,11 @@ public class BulletinParamsProvider extends ParamsProvider {
     @Override
     public View getOnSelectView() {
         return null;
+    }
+
+    @Override
+    public BaseFragment getNewFragment() {
+        return new MoreFragment();
     }
 
     @Override
