@@ -14,7 +14,7 @@ import jason.toolBar_TabLayout_ViewPager.view.viewPager.emma2.provider.ContactsP
 import jason.toolBar_TabLayout_ViewPager.view.viewPager.emma2.provider.MoreParamsWorker;
 import jason.toolBar_TabLayout_ViewPager.view.viewPager.emma2.provider.SocialParamsWorker;
 
-public class MainActivity extends AppCompatActivity {
+public class MainTab extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,11 +30,11 @@ public class MainActivity extends AppCompatActivity {
         TabLayout tabLayout = (android.support.design.widget.TabLayout) findViewById(R.id.tabs) ;
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
         new ToolBarTablayoutViewPager.Builder(this, toolbar, tabLayout, viewPager)
-            .addProviderWithTab(new ContactsParamsWorker(getApplicationContext()))
-            .addProviderWithTab(new ChatsParamsWorker(getApplicationContext()))
-            .addProviderWithTab(new BulletinParamsWorker(getApplicationContext()))
-            .addProviderWithTab(new SocialParamsWorker(getApplicationContext()))
-            .addProviderWithTab(new MoreParamsWorker(getApplicationContext()))
+            .addPageWithTab(new ContactsParamsWorker(getApplicationContext()))
+            .addPageWithTab(new ChatsParamsWorker(getApplicationContext()))
+            .addPageWithTab(new BulletinParamsWorker(getApplicationContext()))
+            .addPageWithTab(new SocialParamsWorker(getApplicationContext()))
+            .addPageWithTab(new MoreParamsWorker(getApplicationContext()))
             .build();
     }
 }

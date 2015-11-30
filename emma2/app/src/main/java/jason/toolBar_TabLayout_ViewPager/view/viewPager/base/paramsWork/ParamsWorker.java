@@ -1,4 +1,4 @@
-package jason.toolBar_TabLayout_ViewPager.view.viewPager.base.paramsProvide;
+package jason.toolBar_TabLayout_ViewPager.view.viewPager.base.paramsWork;
 
 
 import android.content.Context;
@@ -15,8 +15,8 @@ public abstract class ParamsWorker implements IToolBarParamsWork, ITabLayoutPara
     private BaseFragment mBaseFragment = null;
     private final Context mContext;
 
-    public ParamsWorker(final Context conext) {
-        mContext = conext;
+    public ParamsWorker(final Context context) {
+        mContext = context;
     }
 
     public Context getContext() {
@@ -31,6 +31,8 @@ public abstract class ParamsWorker implements IToolBarParamsWork, ITabLayoutPara
         return mBaseFragment;
     }
 
+
+    //FIXME:
     @Override
     public int getTitleTypeface() {
         return Typeface.BOLD;

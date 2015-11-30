@@ -1,4 +1,4 @@
-package jason.toolBar_TabLayout_ViewPager.view.viewPager.base.paramsProvide;
+package jason.toolBar_TabLayout_ViewPager.view.viewPager.base.paramsWork;
 
 import android.support.v7.widget.Toolbar;
 import android.view.View;

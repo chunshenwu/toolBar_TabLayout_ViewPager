@@ -8,7 +8,7 @@
         android:label=""
         android:theme="@style/NoActionBarTheme" >
         <activity
-            android:name="jason.toolBar_TabLayout_ViewPager.view.viewPager.emma2.MainActivity"
+            android:name=".view.viewPager.emma2.MainTab"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

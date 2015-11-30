@@ -6,7 +6,7 @@ import android.view.View;
 
 import jason.toolBar_TabLayout_ViewPager.R;
 import jason.toolBar_TabLayout_ViewPager.view.viewPager.base.fragment.BaseFragment;
-import jason.toolBar_TabLayout_ViewPager.view.viewPager.base.paramsProvide.ParamsWorker;
+import jason.toolBar_TabLayout_ViewPager.view.viewPager.base.paramsWork.ParamsWorker;
 import jason.toolBar_TabLayout_ViewPager.view.viewPager.emma2.fragment.MoreFragment;
 
 /**
