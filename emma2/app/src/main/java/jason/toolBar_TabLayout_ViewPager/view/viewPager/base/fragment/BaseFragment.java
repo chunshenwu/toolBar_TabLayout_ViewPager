@@ -24,24 +24,30 @@ public abstract class BaseFragment extends Fragment implements FragmentLifeCycle
 
     @Override
     public void onResume() {
-        Log.d(getTAG(), "onResume ");
+        Log.i(getTAG(), "onResume >");
         super.onResume();
-        if(getUserVisibleHint() && !mIsOnTabChangedResume){
+        if(getUserVisibleHint()){
+            tryResume();
+        }
+        Log.i(getTAG(), "onResume <");
+    }
+
+    public void tryResume() {
+        if (!mIsOnTabChangedResume) {
             mIsOnTabChangedResume = true;
-            Log.d(getTAG(), ">>onTabChangedResume ");
             onTabChangedResume();
         }
     }
 
     @Override
     public void onPause() {
-        Log.d(getTAG(), "onPause ");
+        Log.i(getTAG(), "onPause >");
         super.onPause();
         if(getUserVisibleHint()){
             mIsOnTabChangedResume =false;
-            Log.d(getTAG(), ">>onTabChangedPause ");
             onTabChangedPause();
         }
+        Log.i(getTAG(), "onPause <");
     }
 
     @Override

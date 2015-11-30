@@ -66,6 +66,7 @@ public class ToolBarTablayoutViewPager {
         mTabLayoutOperator.init();
         mViewPagerOperator.init();
 
+
         //FIXME: workaround
 //        mViewPagerOperator.refresh();
     }
@@ -107,6 +108,7 @@ class TabLayoutOperator {
         tab.setTag(alias);
         mTabLayout.addTab(tab);
         CustomizeTabUtil.addCustomizeTab(mTabLayout.getContext(), mTabLayout);
+        CustomizeTabUtil.setIcon(tab, ParamsWorker.getOnUnSelectResId());
     }
 
     public void init() {
@@ -243,7 +245,7 @@ class TabLayoutOperator {
         mViewPager.setCurrentItem(tab.getPosition());
 
         //Fragment;
-        paramsWorker.getFragment().onTabChangedResume();
+        paramsWorker.getFragment().tryResume();
     }
 
     @Override
@@ -305,13 +307,6 @@ class ViewPagerOperator {
     public void init() {
         mViewPager.setAdapter(new ViewPagerAdapter(mHashMap, mFragmentManager));
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));
-    }
-
-    public void refresh() {
-        int count = mHashMap.size();
-        for (int i = --count; i >= 0 ; i--) {
-            mViewPager.setCurrentItem(i);
-        }
     }
 
     class ViewPagerAdapter extends FragmentStatePagerAdapter {
