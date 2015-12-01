@@ -22,7 +22,7 @@ public class MainView {
 
     private final HashMap<Integer, BaseParamsWorker> mHashMap;
 
-    private final IniaalManager mIniaalManager;
+    private final InitialManager mInitialManager;
     private final ToolBarUIOperator mToolBarOperator;
     private final TabLayoutUIOperator mTabLayoutOperator;
     private final ViewPagerUIOperator mViewPagerOperator;
@@ -53,16 +53,16 @@ public class MainView {
         mTabLayoutOperator = new TabLayoutUIOperator(mHashMap, tabLayout);
         mViewPagerOperator = new ViewPagerUIOperator(mHashMap, viewPager);
 
-        mIniaalManager = new IniaalManager(tabLayout, viewPager,  appCompatActivity.getSupportFragmentManager());
+        mInitialManager = new InitialManager(tabLayout, viewPager,  appCompatActivity.getSupportFragmentManager());
     }
 
-    class IniaalManager {
+    class InitialManager {
 
         private final TabLayout mTabLayout;
         private final ViewPager mViewPager;
         private final FragmentManager mFragmentManager;
 
-        IniaalManager(final TabLayout tabLayout, final ViewPager viewPager, final FragmentManager fragmentManager) {
+        InitialManager(final TabLayout tabLayout, final ViewPager viewPager, final FragmentManager fragmentManager) {
             mTabLayout = tabLayout;
             mViewPager = viewPager;
             mFragmentManager = fragmentManager;
@@ -146,7 +146,7 @@ public class MainView {
     }
 
     public void init() {
-        mIniaalManager.init();
+        mInitialManager.init();
         mToolBarOperator.init();
         mTabLayoutOperator.init();
         mViewPagerOperator.init();
