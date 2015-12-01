@@ -26,8 +26,6 @@ import jason.toolBar_TabLayout_ViewPager.view.viewPager.sample1.MainTab;
 
 public class MainView {
 
-//private String TAG = MainView.class.getName();
-
     private final HashMap<Integer, ParamsWorker> mHashMap;
     private final ToolBarOperator mToolBarOperator;
     private final TabLayoutOperator mTabLayoutOperator;
