@@ -5,7 +5,7 @@ package jason.toolBar_TabLayout_ViewPager.view.viewPager.base.paramsWork;
  */
 
 
-public interface ITabLayoutParamsWork extends IBaseParamsWork {
+interface ITabLayoutParamsWork extends IBaseParamsWork {
 
     int getOnSelectResId();
     int getOnUnSelectResId();

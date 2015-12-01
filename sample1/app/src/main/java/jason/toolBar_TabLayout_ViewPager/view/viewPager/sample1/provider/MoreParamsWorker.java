@@ -6,13 +6,13 @@ import android.view.View;
 
 import jason.toolBar_TabLayout_ViewPager.R;
 import jason.toolBar_TabLayout_ViewPager.view.viewPager.base.fragment.BaseFragment;
-import jason.toolBar_TabLayout_ViewPager.view.viewPager.base.paramsWork.ParamsWorker;
+import jason.toolBar_TabLayout_ViewPager.view.viewPager.base.paramsWork.BaseParamsWorker;
 import jason.toolBar_TabLayout_ViewPager.view.viewPager.sample1.fragment.MoreFragment;
 
 /**
  * Created by cs on 15/11/28.
  */
-public class MoreParamsWorker extends ParamsWorker {
+public class MoreParamsWorker extends BaseParamsWorker {
 
     public MoreParamsWorker(Context conext) {
         super(conext);

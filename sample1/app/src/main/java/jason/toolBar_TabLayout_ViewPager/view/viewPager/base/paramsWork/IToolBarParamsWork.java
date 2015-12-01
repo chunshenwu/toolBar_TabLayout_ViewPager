@@ -8,7 +8,7 @@ import android.view.View;
  */
 
 
-public interface IToolBarParamsWork extends IBaseParamsWork {
+interface IToolBarParamsWork extends IBaseParamsWork {
 
     //For Toolbar
     String getOnSelectTittle();

@@ -6,13 +6,13 @@ import android.view.View;
 
 import jason.toolBar_TabLayout_ViewPager.R;
 import jason.toolBar_TabLayout_ViewPager.view.viewPager.base.fragment.BaseFragment;
-import jason.toolBar_TabLayout_ViewPager.view.viewPager.base.paramsWork.ParamsWorker;
+import jason.toolBar_TabLayout_ViewPager.view.viewPager.base.paramsWork.BaseParamsWorker;
 import jason.toolBar_TabLayout_ViewPager.view.viewPager.sample1.fragment.ContactsFragment;
 
 /**
  * Created by cs on 15/11/28.
  */
-public class ContactsParamsWorker extends ParamsWorker {
+public class ContactsParamsWorker extends BaseParamsWorker {
 
     public ContactsParamsWorker(Context conext) {
         super(conext);
@@ -60,6 +60,7 @@ public class ContactsParamsWorker extends ParamsWorker {
 
     @Override
     public BaseFragment getNewFragment() {
+
         return new ContactsFragment();
     }
 

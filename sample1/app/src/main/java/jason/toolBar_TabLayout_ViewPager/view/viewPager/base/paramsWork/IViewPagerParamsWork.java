@@ -9,7 +9,7 @@ import jason.toolBar_TabLayout_ViewPager.view.viewPager.base.fragment.BaseFragme
  */
 
 
-public interface IViewPagerParamsWork extends IBaseParamsWork {
+interface IViewPagerParamsWork extends IBaseParamsWork {
 
     //For ViewPager
     View getOnSelectView();
