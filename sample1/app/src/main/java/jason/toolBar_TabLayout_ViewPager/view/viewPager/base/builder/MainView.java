@@ -30,12 +30,13 @@ public class MainView {
 
     private final HashMap<String, ParamsWorker> mHashMap;
     private final ToolBarOperator mToolBarOperator;
-    private final TabLayoutOperator  mTabLayoutOperator;
+    private final TabLayoutOperator mTabLayoutOperator;
     private final ViewPagerOperator mViewPagerOperator;
 
 
     public static class Builder {
         private final MainView mMainView;
+
         public Builder(MainTab appCompatActivity, Toolbar toolbar, TabLayout tabLayout, ViewPager viewPager) {
             mMainView = new MainView(appCompatActivity, toolbar, tabLayout, viewPager);
         }
@@ -108,12 +109,14 @@ class ToolBarOperator {
         setOnSelectToolBarMenuIfNeed(paramsWorker);
         setOnSelectToolBarMenuOnMenuItemClickListenerIfNeed(paramsWorker);
     }
+
     public void cleanWorker() {
         setOnUnSelectToolBarTitle();
         setOnUnSelectMenuIfNeed();
         setOnUnSelectNavigationIcon();
     }
-    private void setOnSelectToolBarTitle(IToolBarParamsWork worker){
+
+    private void setOnSelectToolBarTitle(IToolBarParamsWork worker) {
         mToolbar.setTitle("");
         TextView toolbarTitle = (TextView) mToolbar.findViewById(R.id.toolbar_title);
         Log.i(worker.getTAGName(), "setOnSelectToolBarTitle " + toolbarTitle);
@@ -125,7 +128,7 @@ class ToolBarOperator {
         toolbarTitle.setText(worker.getOnSelectTittle());
     }
 
-    private void setOnSelectToolBarNavigationIconIfNeed(IToolBarParamsWork worker){
+    private void setOnSelectToolBarNavigationIconIfNeed(IToolBarParamsWork worker) {
         final int iconId = worker.getOnSelectNavigationIconResId();
         if (iconId != 0) {
             mToolbar.setNavigationIcon(iconId);
@@ -134,7 +137,7 @@ class ToolBarOperator {
         }
     }
 
-    private void setOnSelectToolBarNavigationIconListenerIfNeed(IToolBarParamsWork worker){
+    private void setOnSelectToolBarNavigationIconListenerIfNeed(IToolBarParamsWork worker) {
         final View.OnClickListener listener = worker.getNavigationIconOnClickListener();
         if (listener != null) {
             mToolbar.setNavigationOnClickListener(listener);
@@ -143,7 +146,7 @@ class ToolBarOperator {
         }
     }
 
-    private void setOnSelectToolBarMenuIfNeed(IToolBarParamsWork worker){
+    private void setOnSelectToolBarMenuIfNeed(IToolBarParamsWork worker) {
         final int menuId = worker.getOnSelectMenuResId();
         if (menuId != 0) {
             mToolbar.inflateMenu(menuId);
@@ -152,7 +155,7 @@ class ToolBarOperator {
         }
     }
 
-    private void setOnSelectToolBarMenuOnMenuItemClickListenerIfNeed(IToolBarParamsWork worker){
+    private void setOnSelectToolBarMenuOnMenuItemClickListenerIfNeed(IToolBarParamsWork worker) {
         final Toolbar.OnMenuItemClickListener listener = worker.getMenuOnMenuItemClickListener();
         if (listener != null) {
             mToolbar.setOnMenuItemClickListener(listener);
@@ -161,13 +164,13 @@ class ToolBarOperator {
         }
     }
 
-    private void setOnUnSelectToolBarTitle(){
+    private void setOnUnSelectToolBarTitle() {
         mToolbar.setTitle("");
         TextView toolbarTitle = (TextView) mToolbar.findViewById(R.id.toolbar_title);
         toolbarTitle.setText("");
     }
 
-    private void setOnUnSelectMenuIfNeed(){
+    private void setOnUnSelectMenuIfNeed() {
         Menu menu = mToolbar.getMenu();
         if (menu != null) {
             menu.clear();
@@ -191,7 +194,7 @@ class TabLayoutOperator {
     private final TabLayout mTabLayout;
     private final ViewPagerOperator mVviewPagerOperator;
 
-    public TabLayoutOperator(final HashMap<String, ParamsWorker> hashMap, final ToolBarOperator toolBarOperator, final TabLayout tabLayout, final ViewPagerOperator viewPagerOperator){
+    public TabLayoutOperator(final HashMap<String, ParamsWorker> hashMap, final ToolBarOperator toolBarOperator, final TabLayout tabLayout, final ViewPagerOperator viewPagerOperator) {
         mHashMap = hashMap;
         mToolBarOperator = toolBarOperator;
         mTabLayout = tabLayout;
@@ -215,7 +218,7 @@ class TabLayoutOperator {
     }
 
     private void processHardCodeOperator() {
-        mTabLayout.setSelectedTabIndicatorColor(android.R.color.transparent);
+        mTabLayout.setSelectedTabIndicatorColor(Color.TRANSPARENT);
         mTabLayout.setBackgroundColor(Color.WHITE);
     }
 
@@ -235,7 +238,7 @@ class TabLayoutOperator {
         return mTabLayout.getTabAt(index);
     }
 
-    public void setOnSelectTabLayoutIconIfNeed(TabLayout.Tab tab, ITabLayoutParamsWork worker){
+    public void setOnSelectTabLayoutIconIfNeed(TabLayout.Tab tab, ITabLayoutParamsWork worker) {
         final int iconId = worker.getOnSelectResId();
         if (iconId != 0) {
             CustomizeTabUtil.setIcon(tab, iconId);
@@ -245,7 +248,7 @@ class TabLayoutOperator {
         }
     }
 
-    private void setOnUnSelectTabLayoutIconIfNeed(TabLayout.Tab tab, ITabLayoutParamsWork worker){
+    private void setOnUnSelectTabLayoutIconIfNeed(TabLayout.Tab tab, ITabLayoutParamsWork worker) {
         final int iconId = worker.getOnUnSelectResId();
         if (iconId != 0) {
             //            tab.setIcon(iconId);
@@ -259,37 +262,38 @@ class TabLayoutOperator {
     class OnTabSelectedListenerImpl implements TabLayout.OnTabSelectedListener {
 
         private final HashMap<String, ParamsWorker> mHashMap;
+
         OnTabSelectedListenerImpl(HashMap<String, ParamsWorker> hashMap) {
             mHashMap = hashMap;
         }
 
-    @Override
-    public void onTabSelected(TabLayout.Tab tab) {
-        ParamsWorker paramsWorker = mHashMap.get(tab.getTag());
-        Log.i(TAG, "onTabSelected = " + tab.getPosition() + " " + paramsWorker.getTAGName());
-        //ToolBar
-        mToolBarOperator.setWorker(paramsWorker);
-        //TabLayout
-        setWorker(tab, paramsWorker);
-        //ViewPager
-        mVviewPagerOperator.setWorker(tab, paramsWorker);
-    }
+        @Override
+        public void onTabSelected(TabLayout.Tab tab) {
+            ParamsWorker paramsWorker = mHashMap.get(tab.getTag());
+            Log.i(TAG, "onTabSelected = " + tab.getPosition() + " " + paramsWorker.getTAGName());
+            //ToolBar
+            mToolBarOperator.setWorker(paramsWorker);
+            //TabLayout
+            setWorker(tab, paramsWorker);
+            //ViewPager
+            mVviewPagerOperator.setWorker(tab, paramsWorker);
+        }
 
-    @Override
-    public void onTabUnselected(TabLayout.Tab tab) {
-        ParamsWorker paramsWorker = mHashMap.get(tab.getTag());
-        //ToolBar
-        mToolBarOperator.cleanWorker();
-        //TabLayout
-        cleanWorker(tab, paramsWorker);
-        //ViewPager
-        mVviewPagerOperator.cleanWorker(paramsWorker);
-    }
+        @Override
+        public void onTabUnselected(TabLayout.Tab tab) {
+            ParamsWorker paramsWorker = mHashMap.get(tab.getTag());
+            //ToolBar
+            mToolBarOperator.cleanWorker();
+            //TabLayout
+            cleanWorker(tab, paramsWorker);
+            //ViewPager
+            mVviewPagerOperator.cleanWorker(paramsWorker);
+        }
 
-    @Override
-    public void onTabReselected(TabLayout.Tab tab) {
+        @Override
+        public void onTabReselected(TabLayout.Tab tab) {
+        }
     }
-}
 
     static class CustomizeTabUtil {
 
@@ -320,7 +324,8 @@ class ViewPagerOperator {
     private final TabLayout mTabLayout;
     private final ViewPager mViewPager;
     private final FragmentManager mFragmentManager;
-    public ViewPagerOperator(final HashMap<String, ParamsWorker> hashMap, final TabLayout tabLayout, final ViewPager viewPager, final FragmentManager fragmentManager){
+
+    public ViewPagerOperator(final HashMap<String, ParamsWorker> hashMap, final TabLayout tabLayout, final ViewPager viewPager, final FragmentManager fragmentManager) {
         mHashMap = hashMap;
         mTabLayout = tabLayout;
         mViewPager = viewPager;
@@ -336,6 +341,7 @@ class ViewPagerOperator {
         private final String TAG = ViewPagerAdapter.class.getSimpleName();
 
         private HashMap<String, ParamsWorker> mHashMap;
+
         public ViewPagerAdapter(final HashMap<String, ParamsWorker> hashMap, FragmentManager fm) {
             super(fm);
             mHashMap = hashMap;
