@@ -1,0 +1,56 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context=".MainActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        >
+
+        <TextView
+            android:id="@+id/toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            />
+    </android.support.v7.widget.Toolbar>
+
+    <View
+        android:id="@+id/toolbar_separator"
+        android:layout_below="@id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        />
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tabs"
+        android:layout_below="@id/toolbar_separator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tab:"
+        >
+    </android.support.design.widget.TabLayout>
+
+    <View
+        android:id="@+id/tabs_separator"
+        android:layout_below="@id/tabs"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_below="@id/tabs_separator"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+
+</RelativeLayout>
+<!-- From: file:/home/jason/Code/android/sample1/app/src/main/res/layout/main_activity.xml -->
