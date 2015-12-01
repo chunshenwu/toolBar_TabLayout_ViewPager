@@ -2,6 +2,13 @@
 <items version="2" >
 
     <item
+        jar="/home/jason/Code/android/sample1/app/build/intermediates/exploded-aar/com.android.support/design/23.1.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="19026d31f5d3ae868db81319671a642be5fbba08">
+        <dex dex="/home/jason/Code/android/sample1/app/build/intermediates/pre-dexed/debug/classes-cf03daf1577eaf9215bc5dc337c140950f2176d2.jar" />
+    </item>
+    <item
         jar="/home/jason/Code/android/sample1/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.1.0/jars/classes.jar"
         jumboMode="false"
         revision="23.0.2"
@@ -23,13 +30,6 @@
         <dex dex="/home/jason/Code/android/sample1/app/build/intermediates/pre-dexed/debug/internal_impl-23.1.0-567ea3fe551b2efb0f87c4004a8834c6e31378a7.jar" />
     </item>
     <item
-        jar="/home/jason/Code/android/sample1/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.0/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="57ae0d750ff83f0c738d21720224ac7ea866a094">
-        <dex dex="/home/jason/Code/android/sample1/app/build/intermediates/pre-dexed/debug/classes-900f7d293b5b5c0d82256c75d0eebad1264b880e.jar" />
-    </item>
-    <item
         jar="/home/jason/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/23.1.0/support-annotations-23.1.0.jar"
         jumboMode="false"
         revision="23.0.2"
@@ -37,11 +37,11 @@
         <dex dex="/home/jason/Code/android/sample1/app/build/intermediates/pre-dexed/debug/support-annotations-23.1.0-5a78ed9914730dbe51186ba6125687605df6fff5.jar" />
     </item>
     <item
-        jar="/home/jason/Code/android/sample1/app/build/intermediates/exploded-aar/com.android.support/design/23.1.0/jars/classes.jar"
+        jar="/home/jason/Code/android/sample1/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.0/jars/classes.jar"
         jumboMode="false"
         revision="23.0.2"
-        sha1="19026d31f5d3ae868db81319671a642be5fbba08">
-        <dex dex="/home/jason/Code/android/sample1/app/build/intermediates/pre-dexed/debug/classes-cf03daf1577eaf9215bc5dc337c140950f2176d2.jar" />
+        sha1="57ae0d750ff83f0c738d21720224ac7ea866a094">
+        <dex dex="/home/jason/Code/android/sample1/app/build/intermediates/pre-dexed/debug/classes-900f7d293b5b5c0d82256c75d0eebad1264b880e.jar" />
     </item>
 
 </items>

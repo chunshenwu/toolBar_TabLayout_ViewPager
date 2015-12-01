@@ -23,9 +23,13 @@ public abstract class ParamsWorker implements IToolBarParamsWork, ITabLayoutPara
         return mContext;
     }
 
+    public BaseFragment reAssigntFragment() {
+        mBaseFragment = getNewFragment();
+        return mBaseFragment;
+    }
 
     public BaseFragment getFragment() {
-        if (mBaseFragment == null) {
+        if (mBaseFragment != null) {
             mBaseFragment = getNewFragment();
         }
         return mBaseFragment;

@@ -2396,20 +2396,22 @@ containing a value of this type.
         public static final int fragment_1=0x7f040025;
         public static final int fragment_2=0x7f040026;
         public static final int fragment_3=0x7f040027;
-        public static final int main_activity=0x7f040028;
-        public static final int notification_media_action=0x7f040029;
-        public static final int notification_media_cancel_action=0x7f04002a;
-        public static final int notification_template_big_media=0x7f04002b;
-        public static final int notification_template_big_media_narrow=0x7f04002c;
-        public static final int notification_template_lines=0x7f04002d;
-        public static final int notification_template_media=0x7f04002e;
-        public static final int notification_template_part_chronometer=0x7f04002f;
-        public static final int notification_template_part_time=0x7f040030;
-        public static final int pager_item=0x7f040031;
-        public static final int select_dialog_item_material=0x7f040032;
-        public static final int select_dialog_multichoice_material=0x7f040033;
-        public static final int select_dialog_singlechoice_material=0x7f040034;
-        public static final int support_simple_spinner_dropdown_item=0x7f040035;
+        public static final int fragment_4=0x7f040028;
+        public static final int fragment_5=0x7f040029;
+        public static final int main_activity=0x7f04002a;
+        public static final int notification_media_action=0x7f04002b;
+        public static final int notification_media_cancel_action=0x7f04002c;
+        public static final int notification_template_big_media=0x7f04002d;
+        public static final int notification_template_big_media_narrow=0x7f04002e;
+        public static final int notification_template_lines=0x7f04002f;
+        public static final int notification_template_media=0x7f040030;
+        public static final int notification_template_part_chronometer=0x7f040031;
+        public static final int notification_template_part_time=0x7f040032;
+        public static final int pager_item=0x7f040033;
+        public static final int select_dialog_item_material=0x7f040034;
+        public static final int select_dialog_multichoice_material=0x7f040035;
+        public static final int select_dialog_singlechoice_material=0x7f040036;
+        public static final int support_simple_spinner_dropdown_item=0x7f040037;
     }
     public static final class menu {
         public static final int menu_bulletin=0x7f0d0000;

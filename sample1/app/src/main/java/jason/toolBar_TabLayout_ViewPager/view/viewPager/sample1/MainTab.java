@@ -30,12 +30,13 @@ public class MainTab extends AppCompatActivity {
             Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
             TabLayout tabLayout = (android.support.design.widget.TabLayout) findViewById(R.id.tabs) ;
             ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
-            new MainView.Builder(this, toolbar, tabLayout, viewPager)
-                .addPageWithTab(new ContactsParamsWorker(getApplicationContext()))
-                .addPageWithTab(new ChatsParamsWorker(getApplicationContext()))
-                .addPageWithTab(new BulletinParamsWorker(getApplicationContext()))
-                .addPageWithTab(new SocialParamsWorker(getApplicationContext()))
-                .addPageWithTab(new MoreParamsWorker(getApplicationContext()))
+
+            mMainView = new MainView.Builder(this, toolbar, tabLayout, viewPager)
+                .addPageWithTab(new ContactsParamsWorker(this))
+                .addPageWithTab(new ChatsParamsWorker(this))
+                .addPageWithTab(new BulletinParamsWorker(this))
+                .addPageWithTab(new SocialParamsWorker(this))
+                .addPageWithTab(new MoreParamsWorker(this))
                 .build();
         }
     }

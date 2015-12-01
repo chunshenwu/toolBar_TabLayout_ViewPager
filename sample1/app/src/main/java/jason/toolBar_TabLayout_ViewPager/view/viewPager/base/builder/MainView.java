@@ -28,7 +28,7 @@ public class MainView {
 
 //private String TAG = MainView.class.getName();
 
-    private final HashMap<String, ParamsWorker> mHashMap;
+    private final HashMap<Integer, ParamsWorker> mHashMap;
     private final ToolBarOperator mToolBarOperator;
     private final TabLayoutOperator mTabLayoutOperator;
     private final ViewPagerOperator mViewPagerOperator;
@@ -46,9 +46,10 @@ public class MainView {
             return this;
         }
 
-        public void build() {
+        public MainView build() {
             mMainView.init();
             mMainView.setDefault();
+            return mMainView;
         }
     }
 
@@ -72,8 +73,7 @@ public class MainView {
 
     public void setDefault() {
         final int DEFAULT_INDEX = 1;
-        final String defaultIndex = String.valueOf(DEFAULT_INDEX);
-        ParamsWorker paramsWorker = mHashMap.get(defaultIndex);
+        ParamsWorker paramsWorker = mHashMap.get(DEFAULT_INDEX);
         mToolBarOperator.setWorker(paramsWorker);
         TabLayout.Tab tab = mTabLayoutOperator.getTab(DEFAULT_INDEX);
         mTabLayoutOperator.setWorker(tab, paramsWorker);
@@ -85,11 +85,11 @@ class ToolBarOperator {
 
     private final String TAG = ToolBarOperator.class.getSimpleName();
 
-    private final HashMap<String, ParamsWorker> mHashMap;
+    private final HashMap<Integer, ParamsWorker> mHashMap;
     private final AppCompatActivity mAppCompatActivity;
     private final Toolbar mToolbar;
 
-    public ToolBarOperator(final HashMap<String, ParamsWorker> hashMap, final AppCompatActivity appCompatActivity, final Toolbar toolbar) {
+    public ToolBarOperator(final HashMap<Integer, ParamsWorker> hashMap, final AppCompatActivity appCompatActivity, final Toolbar toolbar) {
         mHashMap = hashMap;
         mAppCompatActivity = appCompatActivity;
         mToolbar = toolbar;
@@ -97,7 +97,6 @@ class ToolBarOperator {
 
     public void init() {
         mAppCompatActivity.setSupportActionBar(mToolbar);
-//        ParamsWorker defaultParamsWorker = mHashMap.get(MainView.DEFAULT_INDEX);
     }
 
     public void setWorker(final ParamsWorker paramsWorker) {
@@ -189,12 +188,12 @@ class TabLayoutOperator {
 
     private String TAG = TabLayoutOperator.class.getName();
 
-    private final HashMap<String, ParamsWorker> mHashMap;
+    private final HashMap<Integer, ParamsWorker> mHashMap;
     private final ToolBarOperator mToolBarOperator;
     private final TabLayout mTabLayout;
     private final ViewPagerOperator mVviewPagerOperator;
 
-    public TabLayoutOperator(final HashMap<String, ParamsWorker> hashMap, final ToolBarOperator toolBarOperator, final TabLayout tabLayout, final ViewPagerOperator viewPagerOperator) {
+    public TabLayoutOperator(final HashMap<Integer, ParamsWorker> hashMap, final ToolBarOperator toolBarOperator, final TabLayout tabLayout, final ViewPagerOperator viewPagerOperator) {
         mHashMap = hashMap;
         mToolBarOperator = toolBarOperator;
         mTabLayout = tabLayout;
@@ -202,11 +201,10 @@ class TabLayoutOperator {
     }
 
     public void addPageWithTab(final ParamsWorker ParamsWorker) {
-        final String alias = String.valueOf(mHashMap.size());
-        mHashMap.put(alias, ParamsWorker);
+        final int position = mHashMap.size();
+        mHashMap.put(position, ParamsWorker);
 
         final TabLayout.Tab tab = mTabLayout.newTab();
-        tab.setTag(alias);
         mTabLayout.addTab(tab);
         CustomizeTabUtil.addCustomizeTab(mTabLayout.getContext(), mTabLayout);
         CustomizeTabUtil.setIcon(tab, ParamsWorker.getOnUnSelectResId());
@@ -261,15 +259,15 @@ class TabLayoutOperator {
 
     class OnTabSelectedListenerImpl implements TabLayout.OnTabSelectedListener {
 
-        private final HashMap<String, ParamsWorker> mHashMap;
+        private final HashMap<Integer, ParamsWorker> mHashMap;
 
-        OnTabSelectedListenerImpl(HashMap<String, ParamsWorker> hashMap) {
+        OnTabSelectedListenerImpl(HashMap<Integer, ParamsWorker> hashMap) {
             mHashMap = hashMap;
         }
 
         @Override
         public void onTabSelected(TabLayout.Tab tab) {
-            ParamsWorker paramsWorker = mHashMap.get(tab.getTag());
+            ParamsWorker paramsWorker = mHashMap.get(tab.getPosition());
             Log.i(TAG, "onTabSelected = " + tab.getPosition() + " " + paramsWorker.getTAGName());
             //ToolBar
             mToolBarOperator.setWorker(paramsWorker);
@@ -281,7 +279,7 @@ class TabLayoutOperator {
 
         @Override
         public void onTabUnselected(TabLayout.Tab tab) {
-            ParamsWorker paramsWorker = mHashMap.get(tab.getTag());
+            ParamsWorker paramsWorker = mHashMap.get(tab.getPosition());
             //ToolBar
             mToolBarOperator.cleanWorker();
             //TabLayout
@@ -320,12 +318,12 @@ class TabLayoutOperator {
 
 class ViewPagerOperator {
 
-    private final HashMap<String, ParamsWorker> mHashMap;
+    private final HashMap<Integer, ParamsWorker> mHashMap;
     private final TabLayout mTabLayout;
     private final ViewPager mViewPager;
     private final FragmentManager mFragmentManager;
 
-    public ViewPagerOperator(final HashMap<String, ParamsWorker> hashMap, final TabLayout tabLayout, final ViewPager viewPager, final FragmentManager fragmentManager) {
+    public ViewPagerOperator(final HashMap<Integer, ParamsWorker> hashMap, final TabLayout tabLayout, final ViewPager viewPager, final FragmentManager fragmentManager) {
         mHashMap = hashMap;
         mTabLayout = tabLayout;
         mViewPager = viewPager;
@@ -340,9 +338,9 @@ class ViewPagerOperator {
     class ViewPagerAdapter extends FragmentStatePagerAdapter {
         private final String TAG = ViewPagerAdapter.class.getSimpleName();
 
-        private HashMap<String, ParamsWorker> mHashMap;
+        private HashMap<Integer, ParamsWorker> mHashMap;
 
-        public ViewPagerAdapter(final HashMap<String, ParamsWorker> hashMap, FragmentManager fm) {
+        public ViewPagerAdapter(final HashMap<Integer, ParamsWorker> hashMap, FragmentManager fm) {
             super(fm);
             mHashMap = hashMap;
         }
@@ -354,8 +352,8 @@ class ViewPagerOperator {
                 Log.e(TAG, "getItem: Error");
                 return null;
             }
-            paramsWorker = mHashMap.get(String.valueOf(position));
-            return paramsWorker.getFragment();
+            paramsWorker = mHashMap.get(position);
+            return paramsWorker.reAssigntFragment();
         }
 
         @Override
@@ -364,7 +362,7 @@ class ViewPagerOperator {
         }
     }
 
-    public void setWorker(final TabLayout.Tab tab, final ParamsWorker paramsWorker) {
+    public void setWorker(TabLayout.Tab tab, final ParamsWorker paramsWorker) {
         //ViewPager
         mViewPager.setCurrentItem(tab.getPosition());
         //Fragment
