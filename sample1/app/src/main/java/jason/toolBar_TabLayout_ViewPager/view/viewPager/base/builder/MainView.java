@@ -70,7 +70,7 @@ public class MainView {
 
     public void setDefault() {
         final int DEFAULT_INDEX = 1;
-        ParamsWorker paramsWorker = mHashMap.get(DEFAULT_INDEX);
+        final ParamsWorker paramsWorker = mHashMap.get(DEFAULT_INDEX);
         mToolBarOperator.setWorker(paramsWorker);
         TabLayout.Tab tab = mTabLayoutOperator.getTab(DEFAULT_INDEX);
         mTabLayoutOperator.setWorker(tab, paramsWorker);
