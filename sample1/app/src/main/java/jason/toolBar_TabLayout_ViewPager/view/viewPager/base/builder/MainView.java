@@ -31,7 +31,6 @@ public class MainView {
     private final TabLayoutOperator mTabLayoutOperator;
     private final ViewPagerOperator mViewPagerOperator;
 
-
     public static class Builder {
         private final MainView mMainView;
 
