@@ -36,7 +36,7 @@ public class BulletinParamsWorker extends BaseParamsWorker {
         return new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                Toast.makeText(getContext(), getTAGName(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), getTagName(), Toast.LENGTH_SHORT).show();
                 return false;
             }
         };
@@ -73,7 +73,7 @@ public class BulletinParamsWorker extends BaseParamsWorker {
     }
 
     @Override
-    public String getTAGName() {
+    public String getTagName() {
         return this.getClass().getSimpleName();
     }
 

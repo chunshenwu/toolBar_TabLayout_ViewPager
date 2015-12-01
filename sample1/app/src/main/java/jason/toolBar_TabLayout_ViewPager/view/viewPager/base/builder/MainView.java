@@ -26,6 +26,7 @@ public class MainView {
     private final ToolBarUIOperator mToolBarOperator;
     private final TabLayoutUIOperator mTabLayoutOperator;
     private final ViewPagerUIOperator mViewPagerOperator;
+    private int mPostition = 0;
 
 
     public static class Builder {
@@ -88,8 +89,9 @@ public class MainView {
 
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                BaseParamsWorker paramsWorker = mHashMap.get(tab.getPosition());
-                Log.i(TAG, "onTabSelected = " + tab.getPosition() + " " + paramsWorker.getTAGName());
+                mPostition = tab.getPosition();
+                BaseParamsWorker paramsWorker = mHashMap.get(mPostition);
+                Log.i(TAG, "onTabSelected = " + tab.getPosition() + " " + paramsWorker.getTagName());
                 for (BaseUIOperator operator : mBaseUIOperator) {
                     operator.setWorker(paramsWorker);
                 }
@@ -98,7 +100,7 @@ public class MainView {
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
                 BaseParamsWorker paramsWorker = mHashMap.get(tab.getPosition());
-                Log.i(TAG, "onTabUnselected = " + tab.getPosition() + " " + paramsWorker.getTAGName());
+                Log.i(TAG, "onTabUnselected = " + tab.getPosition() + " " + paramsWorker.getTagName());
                 for (BaseUIOperator operator : mBaseUIOperator) {
                     operator.cleanWorker(paramsWorker);
                 }
@@ -153,12 +155,13 @@ public class MainView {
     }
 
     public void setDefault() {
-        final int DEFAULT_INDEX = 1;
+        final int DEFAULT_INDEX = 3;
         final BaseParamsWorker paramsWorker = mHashMap.get(DEFAULT_INDEX);
-        mToolBarOperator.setWorker(paramsWorker);
-        TabLayout.Tab tab = mTabLayoutOperator.getTab(DEFAULT_INDEX);
-        mTabLayoutOperator.setWorker(paramsWorker);
         mViewPagerOperator.setWorker(paramsWorker);
+    }
+
+    public BaseParamsWorker getCurrentWorker() {
+        return mHashMap.get(mPostition);
     }
 }
 

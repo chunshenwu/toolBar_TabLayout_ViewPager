@@ -5,8 +5,8 @@ package jason.toolBar_TabLayout_ViewPager.view.viewPager.base.paramsWork;
  */
 
 
-public interface IBaseParamsWork {
+interface IBaseParamsWork {
 
-    String getTAGName();
+    String getTagName();
 
 }

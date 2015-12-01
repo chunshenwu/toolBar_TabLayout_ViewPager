@@ -14,9 +14,6 @@ public abstract class BaseFragment extends Fragment{
     protected abstract void onTabChangedResume();
     protected abstract void onTabChangedPause();
 
-    //LayoutProvide
-    protected abstract int getLayoutId();
-
     private boolean mIsOnTabChangedResume = false;
 
     @Override

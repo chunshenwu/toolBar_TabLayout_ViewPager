@@ -32,7 +32,7 @@ public class SocialParamsWorker extends BaseParamsWorker {
 
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "" + getTAGName(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "" + getTagName(), Toast.LENGTH_SHORT).show();
             }
         };
     }
@@ -42,7 +42,7 @@ public class SocialParamsWorker extends BaseParamsWorker {
         return new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                Toast.makeText(getContext(), getTAGName() + " " + item.getItemId(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), getTagName() + " " + item.getItemId(), Toast.LENGTH_SHORT).show();
                 return false;
             }
         };
@@ -79,7 +79,7 @@ public class SocialParamsWorker extends BaseParamsWorker {
     }
 
     @Override
-    public String getTAGName() {
+    public String getTagName() {
         return this.getClass().getSimpleName();
     }
 

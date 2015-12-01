@@ -33,11 +33,6 @@ public class MoreFragment extends BaseFragment  {
     }
 
     @Override
-    public int getLayoutId() {
-        return R.layout.fragment_1;
-    }
-
-    @Override
     protected String getTAG() {
         return MoreFragment.class.getSimpleName();
     }

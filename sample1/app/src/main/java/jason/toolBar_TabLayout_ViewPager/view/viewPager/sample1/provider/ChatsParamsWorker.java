@@ -40,8 +40,8 @@ public class ChatsParamsWorker extends BaseParamsWorker {
         return new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                Log.i(getTAGName(), "onMenuItemClick:");
-                Toast.makeText(getContext(), getTAGName(), Toast.LENGTH_SHORT).show();
+                Log.i(getTagName(), "onMenuItemClick:");
+                Toast.makeText(getContext(), getTagName(), Toast.LENGTH_SHORT).show();
                 return false;
             }
         };
@@ -73,7 +73,7 @@ public class ChatsParamsWorker extends BaseParamsWorker {
     }
 
     @Override
-    public String getTAGName() {
+    public String getTagName() {
         return this.getClass().getSimpleName();
     }
 

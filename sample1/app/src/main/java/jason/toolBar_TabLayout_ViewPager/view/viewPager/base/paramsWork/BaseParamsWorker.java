@@ -2,8 +2,6 @@ package jason.toolBar_TabLayout_ViewPager.view.viewPager.base.paramsWork;
 
 
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.Typeface;
 
 import jason.toolBar_TabLayout_ViewPager.view.viewPager.base.fragment.BaseFragment;
 
@@ -43,27 +41,4 @@ public abstract class BaseParamsWorker implements IToolBarParamsWork, ITabLayout
     public int getPosition() {
         return mPosition;
     }
-
-    //FIXME:
-    @Override
-    public int getTitleTypeface() {
-        return Typeface.BOLD;
-    }
-
-    @Override
-    public int getTitleTextSize() {
-        return 20;
-    }
-
-    @Override
-    public int getTitleTextColor() {
-        return Color.BLACK;
-    }
-
-    @Override
-    public int getBackgroundColor() {
-        return Color.BLUE;
-    }
-
-
 }

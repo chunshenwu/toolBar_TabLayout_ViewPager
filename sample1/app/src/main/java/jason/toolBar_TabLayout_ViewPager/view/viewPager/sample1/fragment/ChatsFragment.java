@@ -33,11 +33,6 @@ public class ChatsFragment extends BaseFragment {
     }
 
     @Override
-    public int getLayoutId() {
-        return R.layout.fragment_2;
-    }
-
-    @Override
     protected String getTAG() {
         return ChatsFragment.class.getSimpleName();
     }

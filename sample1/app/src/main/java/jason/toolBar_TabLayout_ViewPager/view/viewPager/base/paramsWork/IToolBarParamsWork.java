@@ -18,12 +18,4 @@ interface IToolBarParamsWork extends IBaseParamsWork {
 
     Toolbar.OnMenuItemClickListener getMenuOnMenuItemClickListener();
     int getOnSelectMenuResId();
-
-    //General
-    int getTitleTypeface();
-    int getTitleTextSize();
-    int getTitleTextColor();
-    int getBackgroundColor();
-
-
 }

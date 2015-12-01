@@ -50,7 +50,7 @@ public class TabLayoutUIOperator extends BaseUIOperator {
             TabLayoutUIOperator.CustomizeTabUtil.setIcon(tab, iconId);
             TabLayoutUIOperator.CustomizeTabUtil.setBubbleVisibility(tab, View.VISIBLE);
         } else {
-            Log.v(TAG, "setOnSelectTabLayoutIconIfNeed: resId = 0, at" + currentParamsWorker.getTAGName());
+            Log.v(TAG, "setOnSelectTabLayoutIconIfNeed: resId = 0, at" + currentParamsWorker.getTagName());
         }
     }
 
@@ -62,7 +62,7 @@ public class TabLayoutUIOperator extends BaseUIOperator {
             TabLayoutUIOperator.CustomizeTabUtil.setIcon(tab, iconId);
             TabLayoutUIOperator.CustomizeTabUtil.setBubbleVisibility(tab, View.INVISIBLE);
         } else {
-            Log.v(TAG, "setOnUnSelectTabLayoutIconIfNeed: iconId = 0, at " + oldParamsWorker.getTAGName());
+            Log.v(TAG, "setOnUnSelectTabLayoutIconIfNeed: iconId = 0, at " + oldParamsWorker.getTagName());
         }
     }
 

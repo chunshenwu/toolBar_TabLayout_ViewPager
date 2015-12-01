@@ -65,7 +65,7 @@ public class ContactsParamsWorker extends BaseParamsWorker {
     }
 
     @Override
-    public String getTAGName() {
+    public String getTagName() {
         return this.getClass().getSimpleName();
     }
 }

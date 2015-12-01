@@ -3,7 +3,6 @@ package jason.toolBar_TabLayout_ViewPager.view.viewPager.base.operator;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.Menu;
 import android.view.View;
 import android.widget.TextView;
@@ -31,7 +30,7 @@ public class ToolBarUIOperator extends BaseUIOperator {
     }
 
     public void init() {
-        mAppCompatActivity.setSupportActionBar(mToolbar);
+//        mAppCompatActivity.setSupportActionBar(mToolbar);
     }
 
     public void setWorker(final BaseParamsWorker currentParamsWorker) {
@@ -54,12 +53,7 @@ public class ToolBarUIOperator extends BaseUIOperator {
     private void setOnSelectToolBarTitle(BaseParamsWorker currentParamsWorker) {
         mToolbar.setTitle("");
         TextView toolbarTitle = (TextView) mToolbar.findViewById(R.id.toolbar_title);
-        Log.i(currentParamsWorker.getTAGName(), "setOnSelectToolBarTitle " + toolbarTitle);
-        toolbarTitle.setTypeface(toolbarTitle.getTypeface(), currentParamsWorker.getTitleTypeface());
-        toolbarTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP, currentParamsWorker.getTitleTextSize());
-        toolbarTitle.setTextColor(currentParamsWorker.getTitleTextColor());
-
-        mToolbar.setBackgroundColor(currentParamsWorker.getBackgroundColor());
+        Log.i(currentParamsWorker.getTagName(), "setOnSelectToolBarTitle " + toolbarTitle);
         toolbarTitle.setText(currentParamsWorker.getOnSelectTittle());
     }
 
@@ -68,7 +62,7 @@ public class ToolBarUIOperator extends BaseUIOperator {
         if (iconId != 0) {
             mToolbar.setNavigationIcon(iconId);
         } else {
-            Log.v(TAG, "setOnSelectToolBarNavigationIconIfNeed: resId = 0, at" + currentParamsWorker.getTAGName());
+            Log.v(TAG, "setOnSelectToolBarNavigationIconIfNeed: resId = 0, at " + currentParamsWorker.getTagName());
         }
     }
 
@@ -77,16 +71,17 @@ public class ToolBarUIOperator extends BaseUIOperator {
         if (listener != null) {
             mToolbar.setNavigationOnClickListener(listener);
         } else {
-            Log.v(TAG, "setOnSelectToolBarNavigationIconListenerIfNeed: listener = null, at" + currentParamsWorker.getTAGName());
+            Log.v(TAG, "setOnSelectToolBarNavigationIconListenerIfNeed: listener = null, at " + currentParamsWorker.getTagName());
         }
     }
 
     private void setOnSelectToolBarMenuIfNeed(BaseParamsWorker currentParamsWorker) {
         final int menuId = currentParamsWorker.getOnSelectMenuResId();
         if (menuId != 0) {
+            Log.v(TAG, "setOnSelectToolBarMenuIfNeed: resId = " + menuId + " at " + currentParamsWorker.getTagName());
             mToolbar.inflateMenu(menuId);
         } else {
-            Log.v(TAG, "setOnSelectToolBarMenuIfNeed: resId = 0, at" + currentParamsWorker.getTAGName());
+            Log.v(TAG, "setOnSelectToolBarMenuIfNeed: resId = 0, at " + currentParamsWorker.getTagName());
         }
     }
 
@@ -95,7 +90,7 @@ public class ToolBarUIOperator extends BaseUIOperator {
         if (listener != null) {
             mToolbar.setOnMenuItemClickListener(listener);
         } else {
-            Log.v(TAG, "setOnSelectToolBarNavigationIconListenerIfNeed: listener = null, at" + currentParamsWorker.getTAGName());
+            Log.v(TAG, "setOnSelectToolBarNavigationIconListenerIfNeed: listener = null, at " + currentParamsWorker.getTagName());
         }
     }
 

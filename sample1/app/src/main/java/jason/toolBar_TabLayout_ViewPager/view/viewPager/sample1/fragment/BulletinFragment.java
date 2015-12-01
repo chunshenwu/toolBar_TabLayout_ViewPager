@@ -32,11 +32,6 @@ public class BulletinFragment extends BaseFragment  {
     }
 
     @Override
-    public int getLayoutId() {
-        return R.layout.fragment_3;
-    }
-
-    @Override
     protected String getTAG() {
         return BulletinFragment.class.getSimpleName();
     }
