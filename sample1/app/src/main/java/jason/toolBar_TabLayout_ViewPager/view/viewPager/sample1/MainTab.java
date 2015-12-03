@@ -9,33 +9,33 @@ import android.util.Log;
 import android.view.Menu;
 
 import jason.toolBar_TabLayout_ViewPager.R;
-import jason.toolBar_TabLayout_ViewPager.view.viewPager.base.builder.MainView;
-import jason.toolBar_TabLayout_ViewPager.view.viewPager.sample1.provider.BulletinParamsWorker;
-import jason.toolBar_TabLayout_ViewPager.view.viewPager.sample1.provider.ChatsParamsWorker;
-import jason.toolBar_TabLayout_ViewPager.view.viewPager.sample1.provider.ContactsParamsWorker;
-import jason.toolBar_TabLayout_ViewPager.view.viewPager.sample1.provider.MoreParamsWorker;
-import jason.toolBar_TabLayout_ViewPager.view.viewPager.sample1.provider.SocialParamsWorker;
+import jason.toolBar_TabLayout_ViewPager.view.viewPager.base.builder.MiscKeeperHolderView;
+import jason.toolBar_TabLayout_ViewPager.view.viewPager.sample1.miscKeepers.BulletinViewMiscKeeper;
+import jason.toolBar_TabLayout_ViewPager.view.viewPager.sample1.miscKeepers.ChatsViewMiscKeeper;
+import jason.toolBar_TabLayout_ViewPager.view.viewPager.sample1.miscKeepers.ContactsViewMiscKeeper;
+import jason.toolBar_TabLayout_ViewPager.view.viewPager.sample1.miscKeepers.MoreViewMiscKeeper;
+import jason.toolBar_TabLayout_ViewPager.view.viewPager.sample1.miscKeepers.SocialViewMiscKeeper;
 
 public class MainTab extends AppCompatActivity {
 
-    private MainView mMainView;
+    private MiscKeeperHolderView mMiscKeeperHolderView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
 
-        if (mMainView == null) {
+        if (mMiscKeeperHolderView == null) {
 
             Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
             TabLayout tabLayout = (android.support.design.widget.TabLayout) findViewById(R.id.tabs) ;
             ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
 
-            mMainView = new MainView.Builder(this, toolbar, tabLayout, viewPager)
-                .addPageWithTab(new ContactsParamsWorker(this))
-                .addPageWithTab(new ChatsParamsWorker(this))
-                .addPageWithTab(new BulletinParamsWorker(this))
-                .addPageWithTab(new SocialParamsWorker(this))
-                .addPageWithTab(new MoreParamsWorker(this))
+            mMiscKeeperHolderView = new MiscKeeperHolderView.Builder(this, toolbar, tabLayout, viewPager)
+                .addViewMiscKeeper(new ContactsViewMiscKeeper(this))
+                .addViewMiscKeeper(new ChatsViewMiscKeeper(this))
+                .addViewMiscKeeper(new BulletinViewMiscKeeper(this))
+                .addViewMiscKeeper(new SocialViewMiscKeeper(this))
+                .addViewMiscKeeper(new MoreViewMiscKeeper(this))
                 .build();
         }
     }
@@ -47,8 +47,8 @@ public class MainTab extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        Log.e("MainTab", "onCreateOptionsMenu = " + mMainView.getCurrentWorker().getOnSelectMenuResId());
-        this.getMenuInflater().inflate(mMainView.getCurrentWorker().getOnSelectMenuResId(), menu);
+        Log.e("MainTab", "onCreateOptionsMenu = " + mMiscKeeperHolderView.getCurrentKeeper().getMenuResId());
+        getMenuInflater().inflate(mMiscKeeperHolderView.getCurrentKeeper().getMenuResId(), menu);
         return super.onCreateOptionsMenu(menu);
     }
 }
