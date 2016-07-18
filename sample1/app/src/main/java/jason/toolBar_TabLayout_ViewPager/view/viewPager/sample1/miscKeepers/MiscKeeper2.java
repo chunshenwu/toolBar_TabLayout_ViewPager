@@ -3,24 +3,20 @@ package jason.toolBar_TabLayout_ViewPager.view.viewPager.sample1.miscKeepers;
 import android.content.Context;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import jason.toolBar_TabLayout_ViewPager.R;
 import jason.toolBar_TabLayout_ViewPager.view.viewPager.base.miscKeeper.BaseViewMiscKeeper;
 import jason.toolBar_TabLayout_ViewPager.view.viewPager.base.uiFragment.BaseFragment;
-import jason.toolBar_TabLayout_ViewPager.view.viewPager.sample1.fragments.MoreFragment;
+import jason.toolBar_TabLayout_ViewPager.view.viewPager.sample1.fragments.MiscKeeper2Fragment;
 
 /**
  * Created by cs on 15/11/28.
  */
-public class MoreViewMiscKeeper extends BaseViewMiscKeeper {
+public class MiscKeeper2 extends BaseViewMiscKeeper {
 
-    public MoreViewMiscKeeper(Context context) {
+    public MiscKeeper2(Context context) {
         super(context);
-    }
-
-    @Override
-    public String getTittleText() {
-        return "More";
     }
 
     @Override
@@ -30,16 +26,16 @@ public class MoreViewMiscKeeper extends BaseViewMiscKeeper {
 
     @Override
     public void onNavigationOnClick(View v) {
-
+        Toast.makeText(getContext(), getTagName(), Toast.LENGTH_SHORT).show();
     }
 
-    @Override
     public int getMenuResId() {
-        return 0;
+        return R.menu.menu_chats;
     }
 
     @Override
     public boolean onMenuItemClick(MenuItem item) {
+        Toast.makeText(getContext(), getTagName(), Toast.LENGTH_SHORT).show();
         return false;
     }
 
@@ -55,7 +51,7 @@ public class MoreViewMiscKeeper extends BaseViewMiscKeeper {
 
     @Override
     public BaseFragment getNewFragment() {
-        return new MoreFragment();
+        return new MiscKeeper2Fragment();
     }
 
     @Override

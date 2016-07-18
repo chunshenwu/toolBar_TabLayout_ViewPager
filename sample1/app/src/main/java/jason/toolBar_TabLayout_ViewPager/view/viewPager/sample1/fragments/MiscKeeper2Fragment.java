@@ -13,7 +13,7 @@ import jason.toolBar_TabLayout_ViewPager.view.viewPager.base.uiFragment.BaseFrag
 /**
  * Created by justin on 11/8/15.
  */
-public class ChatsFragment extends BaseFragment {
+public class MiscKeeper2Fragment extends BaseFragment {
 
 
     @Override
@@ -34,6 +34,6 @@ public class ChatsFragment extends BaseFragment {
 
     @Override
     protected String getTAG() {
-        return ChatsFragment.class.getSimpleName();
+        return MiscKeeper2Fragment.class.getSimpleName();
     }
 }

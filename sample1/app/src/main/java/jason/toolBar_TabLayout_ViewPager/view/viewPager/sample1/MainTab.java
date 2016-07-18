@@ -10,11 +10,11 @@ import android.view.Menu;
 
 import jason.toolBar_TabLayout_ViewPager.R;
 import jason.toolBar_TabLayout_ViewPager.view.viewPager.base.builder.MiscKeeperHolderView;
-import jason.toolBar_TabLayout_ViewPager.view.viewPager.sample1.miscKeepers.BulletinViewMiscKeeper;
-import jason.toolBar_TabLayout_ViewPager.view.viewPager.sample1.miscKeepers.ChatsViewMiscKeeper;
-import jason.toolBar_TabLayout_ViewPager.view.viewPager.sample1.miscKeepers.ContactsViewMiscKeeper;
-import jason.toolBar_TabLayout_ViewPager.view.viewPager.sample1.miscKeepers.MoreViewMiscKeeper;
-import jason.toolBar_TabLayout_ViewPager.view.viewPager.sample1.miscKeepers.SocialViewMiscKeeper;
+import jason.toolBar_TabLayout_ViewPager.view.viewPager.sample1.miscKeepers.MiscKeeper3;
+import jason.toolBar_TabLayout_ViewPager.view.viewPager.sample1.miscKeepers.MiscKeeper2;
+import jason.toolBar_TabLayout_ViewPager.view.viewPager.sample1.miscKeepers.MiscKeeper1;
+import jason.toolBar_TabLayout_ViewPager.view.viewPager.sample1.miscKeepers.MiscKeeper5;
+import jason.toolBar_TabLayout_ViewPager.view.viewPager.sample1.miscKeepers.MiscKeeper4;
 
 public class MainTab extends AppCompatActivity {
 
@@ -31,11 +31,11 @@ public class MainTab extends AppCompatActivity {
             ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
 
             mMiscKeeperHolderView = new MiscKeeperHolderView.Builder(this, toolbar, tabLayout, viewPager)
-                .addViewMiscKeeper(new ContactsViewMiscKeeper(this))
-                .addViewMiscKeeper(new ChatsViewMiscKeeper(this))
-                .addViewMiscKeeper(new BulletinViewMiscKeeper(this))
-                .addViewMiscKeeper(new SocialViewMiscKeeper(this))
-                .addViewMiscKeeper(new MoreViewMiscKeeper(this))
+                .addViewMiscKeeper(new MiscKeeper1(this))
+                .addViewMiscKeeper(new MiscKeeper2(this))
+                .addViewMiscKeeper(new MiscKeeper3(this))
+                .addViewMiscKeeper(new MiscKeeper4(this))
+                .addViewMiscKeeper(new MiscKeeper5(this))
                 .build();
         }
     }

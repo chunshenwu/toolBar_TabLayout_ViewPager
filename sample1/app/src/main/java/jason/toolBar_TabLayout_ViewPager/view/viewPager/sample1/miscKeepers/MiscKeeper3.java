@@ -8,20 +8,15 @@ import android.widget.Toast;
 import jason.toolBar_TabLayout_ViewPager.R;
 import jason.toolBar_TabLayout_ViewPager.view.viewPager.base.miscKeeper.BaseViewMiscKeeper;
 import jason.toolBar_TabLayout_ViewPager.view.viewPager.base.uiFragment.BaseFragment;
-import jason.toolBar_TabLayout_ViewPager.view.viewPager.sample1.fragments.ChatsFragment;
+import jason.toolBar_TabLayout_ViewPager.view.viewPager.sample1.fragments.MiscKeeper3Fragment;
 
 /**
  * Created by cs on 15/11/28.
  */
-public class ChatsViewMiscKeeper extends BaseViewMiscKeeper {
+public class MiscKeeper3 extends BaseViewMiscKeeper {
 
-    public ChatsViewMiscKeeper(Context context) {
+    public MiscKeeper3(Context context) {
         super(context);
-    }
-
-    @Override
-    public String getTittleText() {
-        return "Chats";
     }
 
     @Override
@@ -31,11 +26,12 @@ public class ChatsViewMiscKeeper extends BaseViewMiscKeeper {
 
     @Override
     public void onNavigationOnClick(View v) {
-        Toast.makeText(getContext(), getTagName(), Toast.LENGTH_SHORT).show();
+
     }
 
+    @Override
     public int getMenuResId() {
-        return R.menu.menu_chats;
+        return R.menu.menu_bulletin;
     }
 
     @Override
@@ -54,9 +50,10 @@ public class ChatsViewMiscKeeper extends BaseViewMiscKeeper {
         return R.drawable.out;
     }
 
+
     @Override
     public BaseFragment getNewFragment() {
-        return new ChatsFragment();
+        return new MiscKeeper3Fragment();
     }
 
     @Override

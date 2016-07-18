@@ -41,4 +41,9 @@ public abstract class BaseViewMiscKeeper implements IToolBarMisc, ITabLayoutMisc
     final public int getPosition() {
         return mPosition;
     }
+
+    @Override
+    final public String getTittleText() {
+        return this.getClass().getSimpleName();
+    }
 }

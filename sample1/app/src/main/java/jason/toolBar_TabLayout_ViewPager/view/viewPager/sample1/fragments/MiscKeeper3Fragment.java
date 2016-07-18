@@ -13,13 +13,12 @@ import jason.toolBar_TabLayout_ViewPager.view.viewPager.base.uiFragment.BaseFrag
 /**
  * Created by justin on 11/8/15.
  */
-public class MoreFragment extends BaseFragment  {
-
+public class MiscKeeper3Fragment extends BaseFragment  {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Log.d(getTAG(), this.getClass().getSimpleName() + " onCreateView");
-        return inflater.inflate(R.layout.fragment_5, container, false);
+        return inflater.inflate(R.layout.fragment_3, container, false);
     }
 
     @Override
@@ -34,6 +33,6 @@ public class MoreFragment extends BaseFragment  {
 
     @Override
     protected String getTAG() {
-        return MoreFragment.class.getSimpleName();
+        return MiscKeeper3Fragment.class.getSimpleName();
     }
 }
